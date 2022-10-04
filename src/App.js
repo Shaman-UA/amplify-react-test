@@ -7,19 +7,26 @@ const App = () => {
   const [description, setDescription] = useState("");
   const [selectedFile, setSelectedFile] = useState();
 
-    const submitForm = () => {
+    const submitForm = async (e) => {
         const formData = new FormData();
         formData.append("description", description);
         formData.append("file", selectedFile);
 
-        console.log(formData);
-
-        // axios
-        //     .post("http://54.173.190.81/api/file-upload", formData)
-        //     .then((res) => {
-        //         alert("File Upload success");
-        //     })
-        //     .catch((err) => alert("File Upload Error"));
+        e.preventDefault();
+        try {
+            let res = await fetch("http://54.173.190.81/api/file-upload", {
+                method: "POST",
+                body: formData,
+            });
+            let resJson = await res.json();
+            if (res.status === 200) {
+                setDescription("");
+            } else {
+                alert("File Upload Error");
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
 
   return (
@@ -35,7 +42,7 @@ const App = () => {
                 onFileSelectSuccess={(file) => setSelectedFile(file)}
                 onFileSelectError={({ error }) => alert(error)}
             />
-            <button onClick={submitForm}>Submit</button>
+            <button type="button" onClick={submitForm}>Submit</button>
         </form>
       </div>
   );
