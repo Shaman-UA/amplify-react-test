@@ -4,22 +4,23 @@ import './App.css';
 import React, { useState } from "react";
 
 const App = () => {
-  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   return (
       <div className="App">
         <form>
-          <input
+            <input
+                type="file"
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.files[0])}
+            />
+
+            <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
           />
 
-          <input
-              type="file"
-              value={selectedFile}
-              onChange={(e) => setSelectedFile(e.target.files[0])}
-          />
         </form>
       </div>
   );
