@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 import React, { useState } from "react";
@@ -36,7 +35,7 @@ const App = () => {
                 onFileSelectSuccess={(file) => setSelectedFile(file)}
                 onFileSelectError={({ error }) => alert(error)}
             />
-
+            <button onClick={submitForm}>Submit</button>
         </form>
       </div>
   );
