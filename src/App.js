@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import React, { useState } from "react";
-import FileUploader from "FileUploader";
+import FileUploader from "./FileUploader";
 
 const App = () => {
   const [description, setDescription] = useState("");
